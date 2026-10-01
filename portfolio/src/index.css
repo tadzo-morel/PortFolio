@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design system — thème sombre (couleurs du fichier design-system-portfolio.md)
+ * Le portfolio utilise UNIQUEMENT le thème sombre : les valeurs sont dans :root.
+ */
+@layer base {
+  :root {
+    /* Fond principal #0D1117, cartes #161B22, bordures #21262D */
+    --background: 216 29% 7%;
+    --foreground: 212 16% 93%;
+    --card: 216 21% 11%;
+    --card-foreground: 212 16% 93%;
+    --popover: 216 21% 11%;
+    --popover-foreground: 212 16% 93%;
+    /* Accent bleu #2F81F7 */
+    --primary: 215 93% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 216 21% 11%;
+    --secondary-foreground: 212 16% 93%;
+    --muted: 216 21% 11%;
+    /* Texte secondaire #8B949E */
+    --muted-foreground: 212 9% 58%;
+    --accent: 216 21% 11%;
+    --accent-foreground: 212 16% 93%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 15% 15%;
+    --input: 216 15% 15%;
+    --ring: 215 93% 58%;
+    --radius: 0.5rem;
+    --sidebar-background: 216 29% 7%;
+    --sidebar-foreground: 212 16% 93%;
+    --sidebar-primary: 215 93% 58%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 216 21% 11%;
+    --sidebar-accent-foreground: 212 16% 93%;
+    --sidebar-border: 216 15% 15%;
+    --sidebar-ring: 215 93% 58%;
+  }
+
+  .dark {
+    --background: 216 29% 7%;
+    --foreground: 212 16% 93%;
+    --card: 216 21% 11%;
+    --card-foreground: 212 16% 93%;
+    --popover: 216 21% 11%;
+    --popover-foreground: 212 16% 93%;
+    --primary: 215 93% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 216 21% 11%;
+    --secondary-foreground: 212 16% 93%;
+    --muted: 216 21% 11%;
+    --muted-foreground: 212 9% 58%;
+    --accent: 216 21% 11%;
+    --accent-foreground: 212 16% 93%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 15% 15%;
+    --input: 216 15% 15%;
+    --ring: 215 93% 58%;
+    --sidebar-background: 216 29% 7%;
+    --sidebar-foreground: 212 16% 93%;
+    --sidebar-primary: 215 93% 58%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 216 21% 11%;
+    --sidebar-accent-foreground: 212 16% 93%;
+    --sidebar-border: 216 15% 15%;
+    --sidebar-ring: 215 93% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: 4rem;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  /* Sélection de texte dans la couleur d'accent */
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Grille de fond très légère pour le hero (opacité 3 %) */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/*
+ * Révélation au scroll : l'élément commence invisible et légèrement décalé,
+ * puis la classe .is-visible (ajoutée par le composant Reveal) l'affiche.
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes project-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-results {
+  animation: project-arrive 260ms ease-out both;
+}
+
+/* Accessibilité : pas d'animation si l'utilisateur l'a désactivée */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .project-results {
+    animation: none;
+  }
+}

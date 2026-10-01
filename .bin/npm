@@ -1,0 +1,2 @@
+#!/bin/sh
+exec cmd //c "C:\Users\morel\AppData\Local\Programs\Kimi\resources\resources\runtime\npm.cmd" "$@"
