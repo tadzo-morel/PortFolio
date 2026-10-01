@@ -74,7 +74,7 @@ export const profile = {
     'Dans les projets d\u2019équipe, je participe principalement comme développeur back-end.',
   ],
   aboutFacts: [
-    { label: 'Formation', value: 'Master 1 — Dev. d\u2019applications' },
+    { label: 'Formation', value: 'Master 1 - Dev. d\u2019applications' },
     { label: 'Localisation', value: 'Douala, Cameroun' },
     { label: 'Rôle en équipe', value: 'Développeur back-end' },
   ],
